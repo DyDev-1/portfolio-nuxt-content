@@ -1,0 +1,133 @@
+<template>
+  <div class="w-[80%] mx-auto flex justify-between pt-10 text-[28px]">
+    <!-- Logo Section -->
+    <div class="flex items-center relative">
+      <NuxtImg src="/img/logo.png" format="webp" alt="Logo" />
+      <span class="lg:block hidden">ONGDY | WEB DEVELOPMENT</span>
+    </div>
+    <!-- Navigation Links -->
+    <ul
+      class="lg:flex lg:relative absolute lg:mt-0 mt-20 left-auto p-3 flex items-center lg:w-auto w-[80%] lg:bg-transparent bg-[#20A8A4] flex-col lg:flex-row  z-10 gap-4 transition-transform duration-300 ease-in-out"
+      :class="[isOpen ? 'flip-in' : 'flip-out']"
+    >
+      <li class="hover:text-[#20A8A4]">
+        <NuxtLink to="/" @click="handleMenuClick">About</NuxtLink>
+      </li>
+      <li class="hover:text-[#20A8A4]">
+        <NuxtLink to="/work" @click="handleMenuClick">Work</NuxtLink>
+      </li>
+      <li class="hover:text-[#20A8A4]">
+        <NuxtLink to="/posts" @click="handleMenuClick">Post</NuxtLink>
+      </li>
+      <li class="hover:text-[#20A8A4]">
+        <NuxtLink to="/contact" @click="handleMenuClick">Contact</NuxtLink>
+      </li>
+    </ul>
+
+    <!-- Icon Buttons -->
+    <div class="flex items-center">
+      <Icon
+        name="material-symbols:menu"
+        class="ml-5 lg:hidden"
+        @click="toggleMenu"
+      />
+      <Icon
+        :name="dark ? 'carbon:moon' : 'carbon:sun'"
+        class="ml-5"
+        @click="changeMode"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const dark = ref(false)
+const isOpen = ref(false)
+const isFullScreen = ref(false)
+const colorMode = useColorMode()
+console.log(colorMode.preference)
+const changeMode = () => {
+  dark.value = !dark.value
+  dark.value ? colorMode.preference = 'dark' : colorMode.preference = 'light'
+}
+
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value
+}
+
+// Function to handle screen resize
+const handleResize = () => {
+  if (window.innerWidth >= 1024) {
+    isOpen.value = true // Close the menu for large screens
+    isFullScreen.value = true
+  }
+  else{
+    isOpen.value = false
+    isFullScreen.value =false
+  }
+}
+const handleMenuClick = () =>{
+    isFullScreen.value ?  isOpen.value = true :  isOpen.value = false 
+}
+
+// Add event listener on mount and cleanup on unmount
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+  handleResize() // Check the screen width on initial load
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
+</script>
+
+<style>
+body {
+  background-color: #fff;
+  color: rgba(0,0,0,0.8);
+}
+.dark-mode body {
+  background-color: #000000;
+  color: #ebf4f1;
+}
+.light-mode .bg-container {
+  color:  white;
+}
+.sepia-mode body {
+  background-color: #f1e7d0;
+  color: #433422;
+}
+/* Define flip animations */
+@keyframes flipIn {
+  from {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flipOut {
+  from {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+/* Apply animations */
+.flip-in {
+  animation: flipIn 0.5s forwards ease-in-out;
+}
+
+.flip-out {
+  animation: flipOut 0.5s forwards ease-in-out;
+}
+</style>
