@@ -104,7 +104,8 @@ body {
   color:  white;
 }
 .light-mode .menu {
-  color:  white;
+  background: #fff;
+  color:  black;
 }
 .sepia-mode body {
   background-color: #f1e7d0;

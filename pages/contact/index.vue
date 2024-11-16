@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="overflow-x-hidden">
     <!-- Section: Contact Me -->
     <div class="w-full xl:bg-container p-0 mt-12">
       <div class="lg:container w-[80%] mx-auto flex flex-col-reverse lg:flex-row gap-10 lg:gap-20">

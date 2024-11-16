@@ -8,7 +8,7 @@ const { data: projects } = await useAsyncData('home', () => queryContent('/proje
 </script>
 
 <template>
-  <div>
+  <div class="overflow-x-hidden">
     <!-- Header Section -->
     <div class="w-full xl:bg-container p-0 mt-12">
       <div class="xl:container w-[80%] mx-auto flex lg:flex-row flex-col-reverse items-center gap-10">
