@@ -1,13 +1,26 @@
 <template>
   <div class="w-[80%] mx-auto flex justify-between pt-10 text-[28px]">
     <!-- Logo Section -->
-    <div class="flex items-center relative">
-      <NuxtImg src="/img/logo.png" format="webp" alt="Logo" />
-      <span class="lg:block hidden">ONGDY | WEB DEVELOPMENT</span>
+    <div class=" items-center relative leading-7">
+      <p>// Longdy</p>
+      <p class="text-[#20A8A4] ml-4">web_dev</p>
     </div>
     <!-- Navigation Links -->
+ <!-- Icon Buttons -->
+    <div class="flex items-center">
+      <Icon
+        name="material-symbols:menu"
+        class="ml-5 lg:hidden"
+        @click="toggleMenu"
+      />
+      <Icon
+        :name="dark ? 'carbon:moon' : 'carbon:sun'"
+        class="ml-5 lg:hidden"
+        @click="changeMode"
+      />
+    </div>
     <ul
-      class="lg:flex lg:relative absolute lg:mt-0 mt-20 left-auto p-3 flex items-center lg:w-auto w-[80%] lg:bg-transparent bg-[#20A8A4] flex-col lg:flex-row  z-10 gap-4 transition-transform duration-300 ease-in-out"
+      class="menu lg:flex lg:relative absolute lg:mt-0 mt-20 left-auto p-3 flex items-center lg:w-auto w-[80%] lg:bg-transparent bg-slate-900 flex-col lg:flex-row  z-10 gap-4 transition-transform duration-300 ease-in-out"
       :class="[isOpen ? 'flip-in' : 'flip-out']"
     >
       <li class="hover:text-[#20A8A4]">
@@ -22,21 +35,16 @@
       <li class="hover:text-[#20A8A4]">
         <NuxtLink to="/contact" @click="handleMenuClick">Contact</NuxtLink>
       </li>
-    </ul>
-
-    <!-- Icon Buttons -->
-    <div class="flex items-center">
-      <Icon
-        name="material-symbols:menu"
-        class="ml-5 lg:hidden"
-        @click="toggleMenu"
-      />
-      <Icon
+      <li>
+        <Icon
         :name="dark ? 'carbon:moon' : 'carbon:sun'"
-        class="ml-5"
+        class="ml-5 lg:block hidden"
         @click="changeMode"
       />
-    </div>
+      </li>
+    </ul>
+
+   
   </div>
 </template>
 
@@ -93,6 +101,9 @@ body {
   color: #ebf4f1;
 }
 .light-mode .bg-container {
+  color:  white;
+}
+.light-mode .menu {
   color:  white;
 }
 .sepia-mode body {

@@ -10,22 +10,22 @@ const { data: projects } = await useAsyncData('home', () => queryContent('/proje
 <template>
   <div>
     <!-- Header Section -->
-    <div class="w-full bg-container h-[500px] mt-32">
-      <div class="lg:container w-[80%] mx-auto flex lg:flex-row flex-col-reverse">
+    <div class="w-full xl:bg-container p-0 mt-12">
+      <div class="xl:container w-[80%] mx-auto flex lg:flex-row flex-col-reverse items-center gap-10">
         <div
-          class="lg:w-[60%] h-auto w-full text-[28px] leading-10"
+          class="xl:w-[60%] h-auto w-full text-[28px] leading-10"
           data-aos="fade-right"
           data-aos-id="super-duper"
         >
-          <p class="welcom text-[#20A8A4]">Works 💼</p>
-          <p>
+          <p class="welcom text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl">Works 💼</p>
+          <p class="lg:text-5xl md:text-4xl text-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Phasellus malesuada nisi tellus, non imperdiet nisi tempor at.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
           </p>
         </div>
-        <div class="lg:w-[30%] w-full" data-aos="fade-left" data-aos-id="super-duper">
-          <NuxtImg src="/gif/giphy.gif" class="lg:w-[100%] w-[100%]" />
+        <div class="xl:w-[30%] w-full flex justify-center" data-aos="fade-left" data-aos-id="super-duper">
+          <NuxtImg src="/gif/giphy.gif" class="xl:w-[80%] w-[60%] xl:h-[80%] h-[60%]" type="webp"/>
         </div>
       </div>
 

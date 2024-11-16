@@ -7,6 +7,6 @@
 </template>
 <style>
 body{
-  font-family: 'Kosugi';
+  font-family: 'VT323';
 }
 </style>

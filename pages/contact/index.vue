@@ -4,11 +4,11 @@
 <template>
   <div>
     <!-- Section: Contact Me -->
-    <div class="w-full bg-container p-3 mt-32">
+    <div class="w-full xl:bg-container p-0 mt-12">
       <div class="lg:container w-[80%] mx-auto flex flex-col-reverse lg:flex-row gap-10 lg:gap-20">
         <div class="w-full lg:w-[60%] text-[28px] leading-10" data-aos="fade-right" data-aos-id="super-duper">
-          <p class="welcom text-[#20A8A4]">Contact Me 📞</p>
-          <p>
+          <p class="welcom text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl">Contact Me 📞</p>
+          <p class="lg:text-5xl md:text-4xl text-2xl lg:text-left text-center">
             I'm always excited to connect with others, whether it's for potential projects, freelance opportunities, or simply to discuss creative ideas. If you're interested in collaborating, hiring, or learning more about my work, please don’t hesitate to reach out.
           </p>
         </div>
@@ -20,7 +20,7 @@
 
     <!-- Section: Social Contact -->
     <div class="lg:container w-[80%] mx-auto mt-9 pb-7">
-      <p class="text-[#20A8A4] text-3xl pb-5" data-aos="fade-down">Social Contact</p>
+      <p class="text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl pb-5" data-aos="fade-down">Social Contact</p>
       <div class="flex gap-4 justify-start" data-aos="fade-right" data-aos-id="super-duper">
         <NuxtImg src="/icons/linkin.svg" type="webp" sizes="7px"/>
         <NuxtImg src="/icons/fb.svg" type="webp" sizes="7px"/>
@@ -30,7 +30,7 @@
 
     <!-- Section: Mail to Me -->
     <div class="lg:container w-[80%] mx-auto pb-10">
-      <p class="text-[#20A8A4] text-3xl pb-10" data-aos="fade-down">Mail to me</p>
+      <p class="text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl pb-10" data-aos="fade-down">Mail to me</p>
       <div class="border border-[#20A8A4] rounded-xl flex flex-col lg:flex-row p-6 gap-6" data-aos="fade-right">
         <!-- Left Side: Form Fields -->
         <div class="w-full lg:w-1/2">
