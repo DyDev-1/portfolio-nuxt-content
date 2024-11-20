@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/fonts',
     'nuxt-aos',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    'nuxt-nodemailer'
   ],
   fonts: {
     families: [
@@ -19,10 +20,6 @@ export default defineNuxtConfig({
       // specify specific font data - this will bypass any providers
     ]
   },
-  routeRules: {
-    '/': { prerender: true }
-  },
-  
   app:{
     head:{
       htmlAttrs:{
@@ -52,5 +49,16 @@ export default defineNuxtConfig({
   },
   content: {
     documentDriven: false, // Ensure this is disabled
-  }
+  },
+  runtimeConfig: {
+    MAILHOST: process.env.NUXT_MAIL_SMPT,
+    MAILPORT: process.env.NUXT_MAIL_PORT,
+    MAILUSER: process.env.NUXT_MAIL_USERNAME,
+    MAILPASSWORD: process.env.NUXT_MAIL_PASSWORD,
+    CONTACTMAIL: process.env.NUXT_MAIL_TARGET
+},
+  routeRules: {
+    '/': { prerender: true }
+  },
+  
 })

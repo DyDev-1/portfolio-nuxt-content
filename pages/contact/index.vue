@@ -1,4 +1,18 @@
 <script setup type="ts">
+const name = ref('');
+const email = ref('');
+const message = ref('');
+
+const sendingMessage = async()=>{
+  await useFetch('/api/sendmail', {
+    method: 'POST',
+    body:{
+      name:name.value,
+      email:email.value,
+      message:message.value
+    }
+  });
+}
 </script>
 
 <template>
@@ -22,9 +36,13 @@
     <div class="lg:container w-[80%] mx-auto mt-9 pb-7">
       <p class="text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl pb-5" data-aos="fade-down">Social Contact</p>
       <div class="flex gap-4 justify-start" data-aos="fade-right" data-aos-id="super-duper">
+        <NuxtLink to="https://www.linkedin.com/in/kry-longdy-5853b724b" target="_blank">
         <NuxtImg src="/icons/linkin.svg" type="webp" sizes="7px"/>
-        <NuxtImg src="/icons/fb.svg" type="webp" sizes="7px"/>
+        </NuxtLink>
+        <!-- <NuxtImg src="/icons/fb.svg" type="webp" sizes="7px"/> -->
+        <NuxtLink to="https://tttttt.me/dy0410" target="_blank">
         <NuxtImg src="/icons/telegram.svg" type="webp" sizes="7px"/>  
+      </NuxtLink>
       </div>
     </div>
 
@@ -41,6 +59,7 @@
               id="username"
               type="text"
               placeholder="Your Name"
+               v-model="name"
             />
           </div>
           <div class="mb-6">
@@ -50,6 +69,7 @@
               id="email"
               type="email"
               placeholder="Your Email"
+              v-model="email"
             />
           </div>
         </div>
@@ -62,9 +82,12 @@
               class="shadow appearance-none border border-[#20A8A4] py-2 rounded-xl w-full h-full min-h-[150px] px-3 text-[#20A8A4] bg-transparent mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="message"
               placeholder="Your Message"
+               v-model="message"
             ></textarea>
           </div>
+          <button class="bg-[#20A8A4] float-right px-4 py-2 rounded-lg" @click="sendingMessage">Send</button>
         </div>
+      
       </div>
     </div>
     

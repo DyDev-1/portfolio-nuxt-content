@@ -30,7 +30,8 @@ const { data: projects } = await useAsyncData('home', () => queryContent('/proje
       </div>
 
       <!-- Project Cards Grid -->
-      <div class="grid gap-4 lg:grid-cols-3 grid-cols-1 w-[80%] mx-auto mt-8">
+      <div class="grid gap-4 lg:grid-cols-3 grid-cols-1 w-[80%] mx-auto">
+        
         <ProjectCard
           v-for="project in projects"
           :key="project._id"

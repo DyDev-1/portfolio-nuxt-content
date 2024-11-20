@@ -11,7 +11,7 @@
         data-aos-id="super-duper"
       >
 
-        <p class="welcom text-[#20A8A4]  line-1 anim-typewriter lg:text-6xl md:text-5xl text-3xl">
+        <p class="welcom text-[#20A8A4]  line-1 anim-typewriter lg:text-6xl md:text-5xl text-3xl text-right">
           Hello I'm Londy 👋</p>
           <p class="lg:text-5xl md:text-4xl text-2xl">
             Hi there! Welcome to this website—I’m happy to have you here. Take a moment to explore my portfolio and see the projects I’ve worked on. I’m excited to share my journey and skills with you. Let’s create something amazing together!
@@ -54,8 +54,8 @@
 }
 @keyframes typewriter{
   from{width: 0;}
-  to{width: 100%;}
-}
+  to{width: 84%;}
+} 
 @keyframes blinkTextCursor{
   from{border-right-color: rgba(255,255,255,.75);}
   to{border-right-color: transparent;}

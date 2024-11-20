@@ -1,10 +1,12 @@
 <template>
   <div class="w-[80%] mx-auto flex justify-between pt-10 text-[28px]">
     <!-- Logo Section -->
+     <NuxtLink to="/">
     <div class=" items-center relative leading-7">
       <p>// Longdy</p>
       <p class="text-[#20A8A4] ml-4">web_dev</p>
     </div>
+  </NuxtLink>
     <!-- Navigation Links -->
  <!-- Icon Buttons -->
     <div class="flex items-center">
@@ -14,8 +16,8 @@
         @click="toggleMenu"
       />
       <Icon
-        :name="dark ? 'carbon:moon' : 'carbon:sun'"
-        class="ml-5 lg:hidden"
+        :name="dark ? 'meteocons:moon-first-quarter' : 'meteocons:sun-hot'"
+        class="ml-5 lg:hidden cursor-pointer text-4xl"
         @click="changeMode"
       />
     </div>
@@ -24,7 +26,10 @@
       :class="[isOpen ? 'flip-in' : 'flip-out']"
     >
       <li class="hover:text-[#20A8A4]">
-        <NuxtLink to="/" @click="handleMenuClick">About</NuxtLink>
+        <NuxtLink to="/" @click="handleMenuClick">Home</NuxtLink>
+      </li>
+      <li class="hover:text-[#20A8A4]">
+        <NuxtLink to="/about" @click="handleMenuClick">About</NuxtLink>
       </li>
       <li class="hover:text-[#20A8A4]">
         <NuxtLink to="/work" @click="handleMenuClick">Work</NuxtLink>
@@ -37,8 +42,8 @@
       </li>
       <li>
         <Icon
-        :name="dark ? 'carbon:moon' : 'carbon:sun'"
-        class="ml-5 lg:block hidden"
+        :name="dark ? 'meteocons:moon-first-quarter' : 'meteocons:sunrise-fill'"
+        class="ml-5 lg:block hidden cursor-pointer text-4xl"
         @click="changeMode"
       />
       </li>
@@ -51,11 +56,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-const dark = ref(false)
+const dark = ref(true)
 const isOpen = ref(false)
 const isFullScreen = ref(false)
 const colorMode = useColorMode()
-console.log(colorMode.preference)
 const changeMode = () => {
   dark.value = !dark.value
   dark.value ? colorMode.preference = 'dark' : colorMode.preference = 'light'
