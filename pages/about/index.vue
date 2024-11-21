@@ -35,10 +35,11 @@ const progressData = ref([
 
       <!-- Project Cards Grid -->
 
-      <p class="xl:container w-full  text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl mt-5">
+   
+      <div class="xl:container w-full grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 mb-20 overflow-hidden">
+        <p class="xl:container w-[80%] text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl mt-5">
             Technology <Icon name="flat-color-icons:reddit" />
           </p>
-      <div class="xl:container w-full grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 mb-20 overflow-hidden">
         <template v-for="tech in progressData" :key="tech.title">
           <div data-aos="fade-up" data-aos-duration="2000" class="p-4 bg-white shadow rounded w-full">
             <h3 :style="{ color: tech.color }" class="text-lg font-semibold text-center">
