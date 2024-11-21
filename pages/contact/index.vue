@@ -1,10 +1,19 @@
 <script setup type="ts">
+  const { notify } = useNotification();
 const name = ref('');
 const email = ref('');
 const message = ref('');
+const isSending = ref(false)
 
-const sendingMessage = async()=>{
-  await useFetch('/api/sendmail', {
+const clearForm = () =>{
+  name.value = ''
+  email.value = ''
+  message.value = ''
+}
+const sendingMessage = async(event)=>{
+  event.preventDefault();
+  isSending.value = true
+  const { data, error } = await useFetch('/api/sendmail', {
     method: 'POST',
     body:{
       name:name.value,
@@ -12,6 +21,19 @@ const sendingMessage = async()=>{
       message:message.value
     }
   });
+  if (error.value) {
+    isSending.value = false;
+    return error.message("can not create structure");
+  }
+  clearForm()
+  isSending.value = false
+  return  notify({
+      title: "Sucess",
+      text: "Your mail has been sent!",
+      type: "success"
+    });
+  // alert('Success Message Sent!');
+  
 }
 </script>
 
@@ -49,7 +71,9 @@ const sendingMessage = async()=>{
     <!-- Section: Mail to Me -->
     <div class="lg:container w-[80%] mx-auto pb-10">
       <p class="text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl pb-10" data-aos="fade-down">Mail to me</p>
+      <form @submit="sendingMessage">
       <div class="border border-[#20A8A4] rounded-xl flex flex-col lg:flex-row p-6 gap-6" data-aos="fade-right">
+     
         <!-- Left Side: Form Fields -->
         <div class="w-full lg:w-1/2">
           <div class="mb-4">
@@ -60,6 +84,7 @@ const sendingMessage = async()=>{
               type="text"
               placeholder="Your Name"
                v-model="name"
+               required
             />
           </div>
           <div class="mb-6">
@@ -70,6 +95,7 @@ const sendingMessage = async()=>{
               type="email"
               placeholder="Your Email"
               v-model="email"
+              required
             />
           </div>
         </div>
@@ -83,13 +109,19 @@ const sendingMessage = async()=>{
               id="message"
               placeholder="Your Message"
                v-model="message"
+               required
             ></textarea>
           </div>
-          <button class="bg-[#20A8A4] float-right px-4 py-2 rounded-lg" @click="sendingMessage">Send</button>
+
+          <button class="bg-[#20A8A4] float-right px-4 py-2 rounded-lg" type="submit">{{ isSending ? 'Sending...' : 'Send' }}</button>
         </div>
+        
       
-      </div>
     </div>
     
+  </form>
+</div>
+<NuxtNotifications position="bottom left" :speed="500" />
+
   </div>
 </template>

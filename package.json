@@ -23,6 +23,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/nodemailer": "^6.4.16",
     "nodemailer": "^6.9.16",
-    "nuxt-nodemailer": "^1.1.2"
+    "nuxt-nodemailer": "^1.1.2",
+    "nuxt3-notifications": "^1.2.3"
   }
 }

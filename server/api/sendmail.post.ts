@@ -1,14 +1,15 @@
 import { z } from 'zod';
 import nodemailer from 'nodemailer';
 
-const config = useRuntimeConfig();
+const { apiSecret } = useRuntimeConfig();
 
 const mailTransport = nodemailer.createTransport({
-  host: config.NUXT_MAIL_SMPT,
-  port: config.NUXT_MAIL_PORT,
+  host: apiSecret.MAILHOST,
+  port: apiSecret.MAILPORT,
+  secure: true,
   auth: {
-    user: config.NUXT_MAIL_USERNAME,
-    pass: config.NUXT_MAIL_PASSWORD,
+    user: apiSecret.MAILUSER,
+    pass: apiSecret.MAILPASSWORD,
   },
 });
 
@@ -16,8 +17,8 @@ export default defineEventHandler(async (event) => {
   const validated = z
     .object({
       name: z.string().min(1),
-      message: z.string().min(3),
       email: z.string().email({ message: 'Please provide a valid email' }),
+      message: z.string().min(3),
     })
     .safeParse(await readBody(event));
 
@@ -32,21 +33,24 @@ export default defineEventHandler(async (event) => {
   const { data: body } = validated;
 
   try {
+    await mailTransport.verify();
     const mail = await mailTransport.sendMail({
-    //   form: `"${body.name}" <${body.email}>`,
-      to: config.CONTACTMAIL,
+      from: `"${body.name}" <${body.email}>`,
+      to: apiSecret.CONTACTMAIL, // The recipient email
       subject: 'Contact Form Submission',
-      text: body.message,
-      html: body.message,
+      html: `
+        <h1>Contact Form Submission</h1>
+        <p><strong>Name:</strong> ${body.name}</p>
+        <p><strong>Email:</strong> ${body.email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${body.message}</p>
+      `,
     });
-
-   console.log('Message send: %s', mail);
-   console.log('Url Message: %d', nodemailer.getTestMessageUrl(mail));
+if(mail){
+  return { statusCode: 200, message: 'Email sent successfully' }; 
+}
    
-   
-    return { statusCode: 200, message: 'Email sent successfully' };
   } catch (error) {
-    console.error('Error sending email:', error.stack || error.message);
     throw createError({
       statusCode: 503,
       statusMessage: 'Email service unavailable',

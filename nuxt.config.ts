@@ -10,8 +10,10 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-aos',
     '@nuxt/icon',
-    'nuxt-nodemailer'
+    'nuxt-nodemailer',
+    'nuxt3-notifications'
   ],
+  
   fonts: {
     families: [
       // do not resolve this font with any provider from `@nuxt/fonts`
@@ -51,11 +53,12 @@ export default defineNuxtConfig({
     documentDriven: false, // Ensure this is disabled
   },
   runtimeConfig: {
+    apiSecret:{ 
     MAILHOST: process.env.NUXT_MAIL_SMPT,
     MAILPORT: process.env.NUXT_MAIL_PORT,
     MAILUSER: process.env.NUXT_MAIL_USERNAME,
     MAILPASSWORD: process.env.NUXT_MAIL_PASSWORD,
-    CONTACTMAIL: process.env.NUXT_MAIL_TARGET
+    CONTACTMAIL: process.env.NUXT_MAIL_TARGET}
 },
   routeRules: {
     '/': { prerender: true }
