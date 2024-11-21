@@ -31,7 +31,7 @@
 <style>
 /* Background Container */
 .bg-container {
-  background: url('/public/img/bg.jfif');
+  background: url('/public/img/bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   padding: 50px;
