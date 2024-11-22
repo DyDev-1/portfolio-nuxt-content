@@ -19,9 +19,7 @@ const { data: projects } = await useAsyncData('home', () => queryContent('/proje
         >
           <p class="welcom text-[#20A8A4] lg:text-6xl md:text-5xl text-3xl">Works 💼</p>
           <p class="lg:text-5xl md:text-4xl text-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Phasellus malesuada nisi tellus, non imperdiet nisi tempor at.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+            I create dynamic web applications using Vue.js, Nuxt.js, and Laravel, focusing on seamless user experiences, robust backends, and responsive design. My projects highlight skills in building scalable, efficient, and visually appealing applications with optimized workflows.
           </p>
         </div>
         <div class="xl:w-[30%] w-full flex justify-center" data-aos="fade-left" data-aos-id="super-duper">
